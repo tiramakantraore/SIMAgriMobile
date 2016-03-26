@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="simagrimob" default="all">
+  
+  
+  <property file="simagrimob.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.oracle_java(tm)_platform_micro_edition_sdk_3.4" value="${jdk.home.oracle_java(tm)_platform_micro_edition_sdk_3.4}/../Program Files/Java/jdk1.7.0_51/bin"/>
+  <path id="jdk.classpath.oracle_java(tm)_platform_micro_edition_sdk_3.4">
+    <fileset dir="${jdk.home.oracle_java(tm)_platform_micro_edition_sdk_3.4}">
+      <include name="lib/agui_1.0.jar"/>
+      <include name="lib/ams_1.0.jar"/>
+      <include name="lib/cdc_1.1.jar"/>
+      <include name="lib/cldc_1.0.jar"/>
+      <include name="lib/cldc_1.1.jar"/>
+      <include name="lib/deviceaccess_1.0.jar"/>
+      <include name="lib/embedded-support-api.jar"/>
+      <include name="lib/fp_1.1.jar"/>
+      <include name="lib/impng_1.0.jar"/>
+      <include name="lib/jsr082_1.1.jar"/>
+      <include name="lib/jsr120_1.1.jar"/>
+      <include name="lib/jsr135_1.2.jar"/>
+      <include name="lib/jsr172_1.0.jar"/>
+      <include name="lib/jsr177_1.0.jar"/>
+      <include name="lib/jsr179_1.0.jar"/>
+      <include name="lib/jsr184_1.1.jar"/>
+      <include name="lib/jsr205_2.0.jar"/>
+      <include name="lib/jsr211_1.0.jar"/>
+      <include name="lib/jsr226_1.0.jar"/>
+      <include name="lib/jsr234_1.0.jar"/>
+      <include name="lib/jsr239_1.0.jar"/>
+      <include name="lib/jsr256_1.2.jar"/>
+      <include name="lib/jsr257_1.0.jar"/>
+      <include name="lib/jsr280_1.0.jar"/>
+      <include name="lib/jsr75_1.0.jar"/>
+      <include name="lib/logging_1.0.jar"/>
+      <include name="lib/midp_2.0.jar"/>
+      <include name="lib/midp_2.1.jar"/>
+      <include name="lib/omda_ap_1.0.jar"/>
+      <include name="lib/pbp_1.1.jar"/>
+      <include name="lib/secop_1.0.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value=""/>
+  <property name="project.jdk.bin" value=""/>
+  <property name="project.jdk.classpath" value=""/>
+  
+  
+  <!-- Global Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module SIMAgriMob -->
+  
+  <dirname property="module.simagrimob.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.simagrimob" value="${jdk.home.oracle_java(tm)_platform_micro_edition_sdk_3.4}"/>
+  <property name="module.jdk.bin.simagrimob" value="${jdk.bin.oracle_java(tm)_platform_micro_edition_sdk_3.4}"/>
+  <property name="module.jdk.classpath.simagrimob" value="jdk.classpath.oracle_java(tm)_platform_micro_edition_sdk_3.4"/>
+  
+  <property name="compiler.args.simagrimob" value="-encoding UTF-8 -source 1.4 ${compiler.args}"/>
+  
+  <property name="simagrimob.output.dir" value="${module.simagrimob.basedir}/out/production/SIMAgriMob"/>
+  <property name="simagrimob.testoutput.dir" value="${module.simagrimob.basedir}/out/test/SIMAgriMob"/>
+  
+  <path id="simagrimob.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="simagrimob.module.production.classpath">
+    <path refid="${module.jdk.classpath.simagrimob}"/>
+  </path>
+  
+  <path id="simagrimob.runtime.production.module.classpath">
+    <pathelement location="${simagrimob.output.dir}"/>
+  </path>
+  
+  <path id="simagrimob.module.classpath">
+    <path refid="${module.jdk.classpath.simagrimob}"/>
+    <pathelement location="${simagrimob.output.dir}"/>
+  </path>
+  
+  <path id="simagrimob.runtime.module.classpath">
+    <pathelement location="${simagrimob.testoutput.dir}"/>
+    <pathelement location="${simagrimob.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.simagrimob">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.simagrimob">
+    <patternset refid="excluded.from.module.simagrimob"/>
+  </patternset>
+  
+  <path id="simagrimob.module.sourcepath">
+    <dirset dir="${module.simagrimob.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.simagrimob" depends="compile.module.simagrimob.production,compile.module.simagrimob.tests" description="Compile module SIMAgriMob"/>
+  
+  <target name="compile.module.simagrimob.production" depends="register.custom.compilers" description="Compile module SIMAgriMob; production classes">
+    <mkdir dir="${simagrimob.output.dir}"/>
+    <javac2 destdir="${simagrimob.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.simagrimob}/javac">
+      <compilerarg line="${compiler.args.simagrimob}"/>
+      <bootclasspath refid="simagrimob.module.bootclasspath"/>
+      <classpath refid="simagrimob.module.production.classpath"/>
+      <src refid="simagrimob.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.simagrimob"/>
+    </javac2>
+    
+    <copy todir="${simagrimob.output.dir}">
+      <fileset dir="${module.simagrimob.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.simagrimob.tests" depends="register.custom.compilers,compile.module.simagrimob.production" description="compile module SIMAgriMob; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.simagrimob" description="cleanup module">
+    <delete dir="${simagrimob.output.dir}"/>
+    <delete dir="${simagrimob.testoutput.dir}"/>
+  </target>
+  
+  
+  <target name="mobile.build.simagrimob" depends="compile.module.simagrimob" description="Assemble mobile suite for module &#39;SIMAgriMob&#39;">
+    <property name="tmp.dir.simagrimob" value="${module.simagrimob.basedir}/../temp"/>
+    <mkdir dir="${tmp.dir.simagrimob}"/>
+    <antcall target="mobile.preverify.simagrimob"/>
+    <antcall target="mobile.build.jar.simagrimob"/>
+    <delete dir="${tmp.dir.simagrimob}"/>
+  </target>
+  
+  <target name="mobile.preverify.simagrimob" description="Preverify module &#39;SIMAgriMob&#39;">
+    <exec executable="${jdk.home.oracle_java(tm)_platform_micro_edition_sdk_3.4}/bin/preverify">
+      <arg line="-d ${tmp.dir.simagrimob}"/>
+      <arg line="-classpath com.intellij.util.PathsList@4ab54ecf"/>
+      <arg line="${simagrimob.output.dir}"/>
+    </exec>
+  </target>
+  
+  <target name="mobile.build.jar.simagrimob" description="Build mobile suite for module &#39;SIMAgriMob&#39;">
+    <property name="mobile.path.jar" value="${module.simagrimob.basedir}/SIMAgriMob.jar"/>
+    <jar destfile="${mobile.path.jar}" duplicate="preserve">
+      <zipfileset dir="${tmp.dir.simagrimob}"/>
+      <manifest>
+        <attribute name="Created-By" value="IntelliJ IDEA"/>
+        <attribute name="Manifest-Version" value="1.0"/>
+        <attribute name="MIDlet-Version" value="1.0"/>
+        <attribute name="MIDlet-Vendor" value="My Vendor"/>
+        <attribute name="MicroEdition-Configuration" value="CLDC-1.0"/>
+        <attribute name="MicroEdition-Profile" value="MIDP-2.0"/>
+        <attribute name="MIDlet-1" value="SIMAgriMob,   ,   SIMAgriMob"/>
+        <attribute name="Manifest-Version" value="1.0"/>
+        <attribute name="MIDlet-Name" value="SIMAgriMob"/>
+      </manifest>
+    </jar>
+    <length file="${mobile.path.jar}" property="mobile.size.jar"/>
+    <property name="mobile.build.jad.path" value="${module.simagrimob.basedir}/SIMAgriMob.jad"/>
+    <replaceregexp file="${mobile.build.jad.path}" match="MIDlet-Jar-Size: .*" replace="MIDlet-Jar-Size: ${mobile.size.jar}" byline="true"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.simagrimob" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, mobile.build.simagrimob" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
